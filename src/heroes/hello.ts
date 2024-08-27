@@ -1,6 +1,9 @@
 import factions from '../../Data/gameResources/hota_base.fhmod/factions.fhdb.json' assert { type: 'json' };
 
+// TODO - Get all artifacts from data
 
+
+// Get all factions from data
 const getFactionNames = (): string[] => {
     const factionNames = Object.keys(factions[0].records);
     const returnValue: string[] = [];
