@@ -1,4 +1,9 @@
 import factions from '../../Data/gameResources/hota_base.fhmod/factions.fhdb.json' assert { type: 'json' };
-let name = factions[0].records['sod.faction.castle'].untranslatedName;
 
-console.log(name);
+const factionNames = Object.keys(factions[0].records);
+console.log("faction names " + factionNames);
+
+factionNames.forEach(faction => {
+    let name = factions[0].records[faction].untranslatedName;
+    console.log('faction id ' + faction + ":::: " + name);
+})
