@@ -32,7 +32,8 @@
         "start:pm2": "npm run build && npm run pm2:start",
         "pm2:start": "pm2 start process.json",
         "pm2:stop": "pm2 stop process.json",
-        "pm2:delete": "pm2 delete process.json"
+        "pm2:delete": "pm2 delete process.json",
+        "heroes": "npm run build && node --enable-source-maps --es-module-specifier-resolution=node dist/heroes/hello.js"
     },
     "dependencies": {
         "@discordjs/rest": "2.3.0",
@@ -52,7 +53,8 @@
         "pino-pretty": "11.2.1",
         "pm2": "^5.4.1",
         "reflect-metadata": "^0.2.2",
-        "remove-markdown": "0.5.0"
+        "remove-markdown": "0.5.0",
+        "ts-node": "^10.9.2"
     },
     "devDependencies": {
         "@types/express": "4.17.21",
