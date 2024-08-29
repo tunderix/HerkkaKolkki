@@ -90,7 +90,7 @@
                 }
             ]
         },
-		"14": {
+        "14": {
             "boundarySizeHeight": 400,
             "boundarySizeWidth": 450,
             "extra": {
@@ -105,7 +105,7 @@
                 }
             ]
         },
-		"15": {
+        "15": {
             "boundarySizeHeight": 400,
             "boundarySizeWidth": 450,
             "extra": {
@@ -120,7 +120,7 @@
                 }
             ]
         },
-		"16": {
+        "16": {
             "boundarySizeHeight": 400,
             "boundarySizeWidth": 450,
             "extra": {
@@ -135,7 +135,7 @@
                 }
             ]
         },
-		"17": {
+        "17": {
             "boundarySizeHeight": 400,
             "boundarySizeWidth": 450,
             "extra": {
@@ -150,7 +150,7 @@
                 }
             ]
         },
-		"18": {
+        "18": {
             "boundarySizeHeight": 400,
             "boundarySizeWidth": 450,
             "extra": {
@@ -165,7 +165,7 @@
                 }
             ]
         },
-		"19": {
+        "19": {
             "boundarySizeHeight": 400,
             "boundarySizeWidth": 450,
             "extra": {
@@ -263,7 +263,7 @@
             },
             "frames": [
                 {
-					"dup": false,
+                    "dup": false,
                     "h": 92,
                     "id": 1,
                     "padLeft": 192,
@@ -271,7 +271,7 @@
                     "w": 84
                 }
             ],
-			"pixHeightOffset": 92
+            "pixHeightOffset": 92
         },
         "7": {
             "boundarySizeHeight": 400,

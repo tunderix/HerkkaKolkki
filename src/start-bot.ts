@@ -66,7 +66,6 @@ async function start(): Promise<void> {
 
         // User Context Commands
         new ViewDateJoined(),
-
         // TODO: Add new commands here
     ];
 
