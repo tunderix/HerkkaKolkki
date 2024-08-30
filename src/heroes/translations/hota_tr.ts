@@ -58,25 +58,38 @@ export const getSodTranslations = () : IArtifactTranslation[] => {
 
 // Find translation by extending the data in order : sod > hota_tr > hota_trlng
 const getArtifactTranslation = (identifier: string): IArtifactTranslation => {
-    const translation = getSodTranslations().find(t => t.identifier === identifier);
     
-    if(translation.description === undefined) {
-        translation.description = getHotaTranslations().find(t => t.identifier === identifier).description;
+    const sod = getSodTranslations().find(t => t.identifier === identifier);
+    const hota = getHotaTranslations().find(t => t.identifier === identifier);
+    const hotalng = getHotaLngTranslations().find(t => t.identifier === identifier);
+
+    const returnObject: IArtifactTranslation = {
+        description: sod?.description,
+        identifier: identifier,
+        name: sod?.name
     }
     
-    if(translation.description === undefined) {
-        translation.description = getHotaLngTranslations().find(t => t.identifier === identifier).description;
+    if(returnObject.description === undefined) {
+        returnObject.description = hota.description;
+    }
+    if(returnObject.description === undefined) {
+        returnObject.description = hotalng.description;
+    }
+    if(returnObject.description === undefined) {
+        returnObject.description = "";
     }
 
-    if(translation.name === undefined) {
-        translation.name = getHotaTranslations().find(t => t.identifier === identifier).name;
+    if(returnObject.name === undefined) {
+        returnObject.name = hota.name;
     }
-
-    if(translation.name === undefined) {
-        translation.name = getHotaLngTranslations().find(t => t.identifier === identifier).name;
+    if(returnObject.name === undefined) {
+        returnObject.name = hotalng.name;
+    }
+    if(returnObject.name === undefined) {
+        returnObject.name = "";
     }
     
-    return translation;
+    return returnObject;
 }
 
 export default getArtifactTranslation;

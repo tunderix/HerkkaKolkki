@@ -31,6 +31,8 @@ import {
     JobService,
     Logger,
 } from './services/index.js';
+import { ArtifactTrigger } from './triggers/heroes/artifact-trigger.js';
+import { ArtifactsTrigger } from './triggers/heroes/artifacts-trigger.js';
 import { Trigger } from './triggers/index.js';
 
 const require = createRequire(import.meta.url);
@@ -84,6 +86,8 @@ async function start(): Promise<void> {
     // Triggers
     let triggers: Trigger[] = [
         // TODO: Add new triggers here
+        new ArtifactTrigger(),
+        new ArtifactsTrigger(),
     ];
 
     // Event handlers
