@@ -15,7 +15,9 @@ export default interface IArtifact {
     cost: number;
     value: number;
     guard: number;
+    translatedDescription: string;
     untranslatedName: string;
+    translatedName: string;
     slot: string;
     bmUnit: string;
 }

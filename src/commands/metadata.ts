@@ -13,6 +13,23 @@ import { Lang } from '../services/index.js';
 export const ChatCommandMetadata: {
     [command: string]: RESTPostAPIChatInputApplicationCommandsJSONBody;
 } = {
+    HEROES: {
+        type: ApplicationCommandType.ChatInput,
+        name: Lang.getRef('chatCommands.heroes', Language.Default),
+        name_localizations: Lang.getRefLocalizationMap('chatCommands.heroes'),
+        description: Lang.getRef('commandDescs.heroes', Language.Default),
+        description_localizations: Lang.getRefLocalizationMap('commandDescs.heroes'),
+        dm_permission: true,
+        default_member_permissions: PermissionsBitField.resolve([
+            PermissionFlagsBits.Administrator,
+        ]).toString(),
+        options: [
+            {
+                ...Args.HEROES_COMMAND,
+                required: true,
+            },
+        ],
+    },
     DEV: {
         type: ApplicationCommandType.ChatInput,
         name: Lang.getRef('chatCommands.dev', Language.Default),

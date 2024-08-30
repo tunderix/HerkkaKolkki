@@ -34,6 +34,7 @@
         "pm2:stop": "pm2 stop process.json",
         "pm2:delete": "pm2 delete process.json",
         "heroes": "npm run build && node --enable-source-maps --es-module-specifier-resolution=node dist/heroes/hello.js",
+        "heroes:tr_artifacts": "npm run build && node --enable-source-maps --es-module-specifier-resolution=node dist/heroes/translations/hota_tr.js",
         "pretifyDataJson":"prettier --write Data/**/*.json"
     },
     "dependencies": {

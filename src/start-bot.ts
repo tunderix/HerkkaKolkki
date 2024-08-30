@@ -3,7 +3,7 @@ import { Options, Partials } from 'discord.js';
 import { createRequire } from 'node:module';
 
 import { Button } from './buttons/index.js';
-import { DevCommand, HelpCommand, InfoCommand, TestCommand } from './commands/chat/index.js';
+import { DevCommand, HelpCommand, InfoCommand, TestCommand, HeroesCommand } from './commands/chat/index.js';
 import {
     ChatCommandMetadata,
     Command,
@@ -65,8 +65,10 @@ async function start(): Promise<void> {
         new ViewDateSent(),
 
         // User Context Commands
-        new ViewDateJoined(),
+        new ViewDateJoined(), 
+        
         // TODO: Add new commands here
+        new HeroesCommand(),
     ];
 
     // Buttons

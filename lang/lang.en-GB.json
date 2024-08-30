@@ -125,6 +125,11 @@
                         ]
                     }
                 ]
+            },
+            "heroesAllArtifacts": {
+                "title": "All artifacts are",
+                "description": ["Here will be all artifacts: []"],
+                "fields": []
             }
         },
         "validationEmbeds": {
@@ -192,7 +197,8 @@
             "dev": "dev",
             "help": "help",
             "info": "info",
-            "test": "test"
+            "test": "test",
+            "heroes": "heroes"
         },
         "userCommands": {
             "viewDateJoined": "View Date Joined"
@@ -208,9 +214,11 @@
             "dev": "Developer use only.",
             "help": "Find help or contact support.",
             "info": "View bot info.",
-            "test": "Run the test command."
+            "test": "Run the test command.",
+            "heroes": "Heroes data."
         },
         "argDescs": {
+            "heroesCommand": "Command.",
             "devCommand": "Command.",
             "helpOption": "Option.",
             "infoOption": "Option."
