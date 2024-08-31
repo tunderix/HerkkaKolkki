@@ -85,7 +85,6 @@ async function start(): Promise<void> {
 
     // Triggers
     let triggers: Trigger[] = [
-        // TODO: Add new triggers here
         new ArtifactTrigger(),
         new ArtifactsTrigger(),
     ];
