@@ -8,7 +8,7 @@ export class ArtifactsTrigger implements Trigger {
     
     triggered(msg: Message): boolean {
         const args = msg.content.split(" ");
-        return args[0] === "/heroes" && args[1] === "artifacts";
+        return args[0] === "/heroe" && args[1] === "artifacts";
     }
     public async execute(msg: Message, data: EventData): Promise<void> {
         const args = msg.content.split(" ");

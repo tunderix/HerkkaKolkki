@@ -1,5 +1,6 @@
 ﻿import artifactData from '../../../Data/gameResources/hota_base.fhmod/artifacts.fhdb.json' assert { type: 'json' };
-import getArtifactTranslation from '../translations/hota_tr.js';
+import { ArtifactTranslationFor } from '../translations.js';
+//import getArtifactTranslation from '../translations/hota_tr.js';
 import IArtifact from '../types/IArtifact.js';
 
 const parseAllArtifacts = (): IArtifact[] => {
@@ -9,7 +10,10 @@ const parseAllArtifacts = (): IArtifact[] => {
     
     
     for (const [key, value] of Object.entries(artifacts)) {
-        const tr = getArtifactTranslation(key);
+        const [name, description] = ArtifactTranslationFor(key);
+        if(description === undefined || name === undefined) {
+            console.log("FAIIIIIL");
+        }
         const newArtifact: IArtifact = {
             identifier: key,
             class: value.class,
@@ -17,8 +21,8 @@ const parseAllArtifacts = (): IArtifact[] => {
             value: value.value,
             guard: value.guard,
             untranslatedName: value.untranslatedName,
-            translatedName: tr.name,
-            translatedDescription: tr.description,
+            translatedName: name,
+            translatedDescription: description,
             slot: value.slot,
             bmUnit: value.bmUnit,
         };
