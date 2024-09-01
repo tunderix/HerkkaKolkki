@@ -3,7 +3,13 @@ import { Options, Partials } from 'discord.js';
 import { createRequire } from 'node:module';
 
 import { Button } from './buttons/index.js';
-import { DevCommand, HelpCommand, InfoCommand, TestCommand, HeroesCommand } from './commands/chat/index.js';
+import {
+    DevCommand,
+    HelpCommand,
+    InfoCommand,
+    TestCommand,
+    HeroesCommand,
+} from './commands/chat/index.js';
 import {
     ChatCommandMetadata,
     Command,
@@ -34,6 +40,7 @@ import {
 import { ArtifactTrigger } from './triggers/heroes/artifact-trigger.js';
 import { ArtifactsByNameTrigger } from './triggers/heroes/artifacts-by-name.js';
 import { ArtifactsTrigger } from './triggers/heroes/artifacts-trigger.js';
+import { FactionsTrigger } from './triggers/heroes/factions-trigger.js';
 import { Trigger } from './triggers/index.js';
 
 const require = createRequire(import.meta.url);
@@ -68,8 +75,8 @@ async function start(): Promise<void> {
         new ViewDateSent(),
 
         // User Context Commands
-        new ViewDateJoined(), 
-        
+        new ViewDateJoined(),
+
         // TODO: Add new commands here
         new HeroesCommand(),
     ];
@@ -89,6 +96,7 @@ async function start(): Promise<void> {
         new ArtifactTrigger(),
         new ArtifactsTrigger(),
         new ArtifactsByNameTrigger(),
+        new FactionsTrigger(),
     ];
 
     // Event handlers
