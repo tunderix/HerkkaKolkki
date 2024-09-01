@@ -1,42 +1,27 @@
 ﻿import { Message } from 'discord.js';
-import { artifactsContaining } from '../../heroes/parseMethods/artifacts.js';
+import parseAllArtifacts from '../../heroes/parseMethods/artifacts.js';
 import { EventData } from '../../models/internal-models';
 import { Trigger } from '../trigger';
+import IHeroesArguments from '../types/IHeroesArguments.js';
+import HeroesTriggers from '../heroes-trigger-templates.js';
 
-export class ArtifactsTrigger implements Trigger {
+export class ArtifactsTrigger implements IHeroesArguments, Trigger {
     requireGuild = false;
-    
+
+    heroesArgs = ['artifacts'];
+    triggerWords = HeroesTriggers.artifacts;
+
+    heroesArgsValid(triggerArgs: string[]): boolean {
+        return this.heroesArgs[0] === triggerArgs[0].slice(1) && triggerArgs.length < 2;
+    }
+
     triggered(msg: Message): boolean {
-        const args = msg.content.split(" ");
-        return args[0] === "/heroes" && args[1] === "artifacts";
+        const args = msg.content.split(' ');
+        return this.heroesArgsValid(args);
     }
+
     public async execute(msg: Message, data: EventData): Promise<void> {
-        const args = msg.content.split(" ");
-        
-        // make sure there is something after two parameters.
-        if(args.length < 3) {
-            return;
-        }
-        
-        // Make sure the content after second param is in form:
-        // "Magic Arrow"
-        
-        // Take off prefixes
-        const artifactName = msg.content.replace(args[0] + " " + args[1], "");
-        
-        // make sure rest are inside ""
-        const regex = /"([^"]*)"/g;
-        const aName = regex.exec(artifactName)
-        
-        const artifacts = artifactsContaining(aName[1]);
-        
-        let message = "Artifacts containing [" + aName[1] + "] are: "
-        artifacts.forEach(a => {
-            message += a.translatedName;
-            message += ", "
-        });
-        
-        msg.reply(message.slice(0, -2));
+        const artifacts = parseAllArtifacts();
+        msg.reply('There are [' + artifacts.length + '] artifacts in HOTA');
     }
-    
 }

@@ -9,15 +9,21 @@
     "bmUnit": "sod.unit.catapult"
 },*/
 
-export default interface IArtifact {
+export interface IArtifact {
     identifier: string;
     class: string;
     cost: number;
     value: number;
     guard: number;
-    translatedDescription: string;
     untranslatedName: string;
-    translatedName: string;
     slot: string;
     bmUnit: string;
 }
+
+export interface ITranslatedArtifact {
+    artifact: IArtifact;
+    translatedDescription: string;
+    translatedName: string;
+}
+
+export default IArtifact;

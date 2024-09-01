@@ -11,6 +11,22 @@ export class RegexUtils {
     public static escapeRegex(input: string): string {
         return input?.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
     }
+    
+    public static isWrappedWithStar(input: string): boolean {
+        const regex = /^\*[^*]+\*$/;
+        return regex.test(input);
+    }
+
+    public static splitDiscordTrigger(trigger: string): string[] {
+        const regex = /(?:[^\s"]+|"[^"]*")+/g;
+        const matches = trigger.match(regex);
+        return matches ? matches.map(arg => arg.replace(/(^"|"$)/g, '')) : [];
+    }
+    
+    public static escapeDoubleQuotes(input: string): string {
+        const regex = /"([^"]*)"/g;
+        return regex.exec(input)[1];
+    }
 
     public static discordId(input: string): string {
         return input?.match(/\b\d{17,20}\b/)?.[0];
