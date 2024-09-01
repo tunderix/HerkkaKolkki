@@ -32,6 +32,7 @@ import {
     Logger,
 } from './services/index.js';
 import { ArtifactTrigger } from './triggers/heroes/artifact-trigger.js';
+import { ArtifactsByNameTrigger } from './triggers/heroes/artifacts-by-name.js';
 import { ArtifactsTrigger } from './triggers/heroes/artifacts-trigger.js';
 import { Trigger } from './triggers/index.js';
 
@@ -87,6 +88,7 @@ async function start(): Promise<void> {
     let triggers: Trigger[] = [
         new ArtifactTrigger(),
         new ArtifactsTrigger(),
+        new ArtifactsByNameTrigger(),
     ];
 
     // Event handlers
