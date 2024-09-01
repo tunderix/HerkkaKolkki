@@ -3,7 +3,7 @@ import { Logger } from '../../services/index.js';
 import { ArtifactTranslationFor } from '../translations.js';
 import IArtifact, { ITranslatedArtifact } from '../types/IArtifact.js';
 
-const createArtifactFrom = (key: string, value: any): IArtifact => {
+const createArtifactBasedOn = (key: string, value: any): IArtifact => {
     return {
         identifier: key,
         class: value.class,
@@ -29,7 +29,7 @@ const parseAllArtifacts = (): ITranslatedArtifact[] => {
         }
         
         artifactObjects.push({ 
-            artifact: createArtifactFrom(key, value), 
+            artifact: createArtifactBasedOn(key, value), 
             translatedName: name, 
             translatedDescription: description
         });
