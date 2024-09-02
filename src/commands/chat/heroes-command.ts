@@ -5,7 +5,7 @@ import typescript from 'typescript';
 import { HeroesCommandName } from '../../enums/heroes-command-name.js';
 
 import { DevCommandName } from '../../enums/index.js';
-import parseAllArtifacts from '../../heroes/parseMethods/artifacts.js';
+import parseAllArtifacts, {Artifacts} from '../../heroes/parseMethods/artifacts.js';
 import { Language } from '../../models/enum-helpers/index.js';
 import { EventData } from '../../models/internal-models.js';
 import { Lang } from '../../services/index.js';
@@ -35,7 +35,7 @@ export class HeroesCommand implements Command {
 
         switch (args.command) {
             case HeroesCommandName.ALL_ARTIFACTS: {
-                const artifacts = parseAllArtifacts();
+                const artifacts = Artifacts;
                 await InteractionUtils.send(
                     intr,
                     Lang.getEmbed('displayEmbeds.heroesAllArtifacts', data.lang, {
