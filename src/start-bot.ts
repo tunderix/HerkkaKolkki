@@ -6,9 +6,9 @@ import { Button } from './buttons/index.js';
 import {
     DevCommand,
     HelpCommand,
+    HeroesCommand,
     InfoCommand,
     TestCommand,
-    HeroesCommand,
 } from './commands/chat/index.js';
 import {
     ChatCommandMetadata,
@@ -37,14 +37,14 @@ import {
     JobService,
     Logger,
 } from './services/index.js';
-import { Trigger } from './triggers/index.js';
-import { ArtifactsTrigger } from './triggers/artifacts/artifacts-trigger.js';
-import { ArtifactInfoTrigger } from './triggers/artifacts/artifact-info-trigger.js';
 import { ArtifactByNameTrigger } from './triggers/artifacts/artifact-by-name-trigger.js';
-import { ArtifactsBySlotTrigger } from './triggers/artifacts/artifacts-by-slot-trigger.js';
-import { ArtifactsByClassTrigger } from './triggers/artifacts/artifacts-by-class-trigger.js';
-import { ArtifactSlotsTrigger } from './triggers/artifacts/artifact-slots-trigger.js';
 import { ArtifactClassesTrigger } from './triggers/artifacts/artifact-classes-trigger.js';
+import { ArtifactInfoTrigger } from './triggers/artifacts/artifact-info-trigger.js';
+import { ArtifactSlotsTrigger } from './triggers/artifacts/artifact-slots-trigger.js';
+import { ArtifactsByClassTrigger } from './triggers/artifacts/artifacts-by-class-trigger.js';
+import { ArtifactsBySlotTrigger } from './triggers/artifacts/artifacts-by-slot-trigger.js';
+import { ArtifactsTrigger } from './triggers/artifacts/artifacts-trigger.js';
+import { Trigger } from './triggers/index.js';
 
 const require = createRequire(import.meta.url);
 let Config = require('../config/config.json');
