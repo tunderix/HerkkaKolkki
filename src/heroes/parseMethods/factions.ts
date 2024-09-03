@@ -8,7 +8,7 @@ export const getAllFactions = (): IFaction[] => {
         const factionAlignment = value['alignment'];
         const factionTerrain = value['nativeTerrain'];
         if (factionAlignment === undefined || factionTerrain === undefined) {
-            Logger.warn('faction Alignment or Terrain is busted');
+            Logger.warn('faction Alignment or Terrain is busted, Faction is ' + key);
         }
         const newfaction: IFaction = {
             identifier: key,
@@ -20,9 +20,10 @@ export const getAllFactions = (): IFaction[] => {
     }
     return factions;
 };
-
+const Factions = getAllFactions();
 export const getFactionByIdentifier = (factionidentifier: string): IFaction => {
     const allfactions = getAllFactions();
     const faction = allfactions.find(faction => faction.identifier === factionidentifier);
     return faction;
 };
+export default Factions;

@@ -45,6 +45,7 @@ import { ArtifactsByClassTrigger } from './triggers/artifacts/artifacts-by-class
 import { ArtifactsBySlotTrigger } from './triggers/artifacts/artifacts-by-slot-trigger.js';
 import { ArtifactsTrigger } from './triggers/artifacts/artifacts-trigger.js';
 import { Trigger } from './triggers/index.js';
+import { FactionsTrigger } from './triggers/heroes/factions-trigger.js';
 
 const require = createRequire(import.meta.url);
 let Config = require('../config/config.json');
@@ -103,6 +104,7 @@ async function start(): Promise<void> {
         new ArtifactsByClassTrigger(),
         new ArtifactSlotsTrigger(),
         new ArtifactClassesTrigger(),
+        new FactionsTrigger(),
     ];
 
     // Event handlers
