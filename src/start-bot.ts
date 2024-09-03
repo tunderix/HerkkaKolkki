@@ -37,11 +37,14 @@ import {
     JobService,
     Logger,
 } from './services/index.js';
-import { ArtifactTrigger } from './triggers/heroes/artifact-trigger.js';
-import { ArtifactsByNameTrigger } from './triggers/heroes/artifacts-by-name.js';
-import { ArtifactsTrigger } from './triggers/heroes/artifacts-trigger.js';
-import { FactionsTrigger } from './triggers/heroes/factions-trigger.js';
 import { Trigger } from './triggers/index.js';
+import { ArtifactsTrigger } from './triggers/artifacts/artifacts-trigger.js';
+import { ArtifactInfoTrigger } from './triggers/artifacts/artifact-info-trigger.js';
+import { ArtifactByNameTrigger } from './triggers/artifacts/artifact-by-name-trigger.js';
+import { ArtifactsBySlotTrigger } from './triggers/artifacts/artifacts-by-slot-trigger.js';
+import { ArtifactsByClassTrigger } from './triggers/artifacts/artifacts-by-class-trigger.js';
+import { ArtifactSlotsTrigger } from './triggers/artifacts/artifact-slots-trigger.js';
+import { ArtifactClassesTrigger } from './triggers/artifacts/artifact-classes-trigger.js';
 
 const require = createRequire(import.meta.url);
 let Config = require('../config/config.json');
@@ -93,10 +96,13 @@ async function start(): Promise<void> {
 
     // Triggers
     let triggers: Trigger[] = [
-        new ArtifactTrigger(),
         new ArtifactsTrigger(),
-        new ArtifactsByNameTrigger(),
-        new FactionsTrigger(),
+        new ArtifactInfoTrigger(),
+        new ArtifactByNameTrigger(),
+        new ArtifactsBySlotTrigger(),
+        new ArtifactsByClassTrigger(),
+        new ArtifactSlotsTrigger(),
+        new ArtifactClassesTrigger(),
     ];
 
     // Event handlers
