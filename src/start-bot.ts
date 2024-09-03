@@ -44,8 +44,8 @@ import { ArtifactSlotsTrigger } from './triggers/artifacts/artifact-slots-trigge
 import { ArtifactsByClassTrigger } from './triggers/artifacts/artifacts-by-class-trigger.js';
 import { ArtifactsBySlotTrigger } from './triggers/artifacts/artifacts-by-slot-trigger.js';
 import { ArtifactsTrigger } from './triggers/artifacts/artifacts-trigger.js';
-import { Trigger } from './triggers/index.js';
 import { FactionsTrigger } from './triggers/heroes/factions-trigger.js';
+import { Trigger } from './triggers/index.js';
 
 const require = createRequire(import.meta.url);
 let Config = require('../config/config.json');
