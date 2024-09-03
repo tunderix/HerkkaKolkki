@@ -1,31 +1,28 @@
 ﻿import factiondata from '../../../Data/gameResources/hota_base.fhmod/factions.fhdb.json' assert { type: 'json' };
+import { Logger } from '../../services/logger.js';
 import IFaction from '../types/IFaction.js';
-const getAllFactionNames = (): string[] => {
-    const factionNames = Object.keys(factiondata[0].records);
-    const returnValue: string[] = [];
 
-    factionNames.forEach(faction => {
-        let name = factiondata[0].records[faction].untranslatedName;
-        returnValue.push(name);
-    });
-
-    return returnValue;
-};
-
-export const getallfactions = (): IFaction[] => {
+export const getAllFactions = (): IFaction[] => {
     let factions = [];
     for (const [key, value] of Object.entries(factiondata[0].records)) {
+        const factionAlignment = value['alignment'];
+        const factionTerrain = value['nativeTerrain'];
+        if (factionAlignment === undefined || factionTerrain === undefined) {
+            Logger.warn('faction Alignment or Terrain is busted');
+        }
         const newfaction: IFaction = {
             identifier: key,
+            untranslatedName: value.untranslatedName,
+            alignment: factionAlignment,
+            nativeTerrain: factionTerrain,
         };
         factions.push(newfaction);
     }
     return factions;
 };
 
-export const getfaction = (factionidentifier: string): IFaction => {
-    const allfactions = getallfactions();
+export const getFactionByIdentifier = (factionidentifier: string): IFaction => {
+    const allfactions = getAllFactions();
     const faction = allfactions.find(faction => faction.identifier === factionidentifier);
     return faction;
 };
-const castle = getfaction('sod.faction.castle');

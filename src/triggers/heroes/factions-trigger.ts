@@ -38,6 +38,6 @@ export class FactionsTrigger implements IHeroesArguments, Trigger {
     }
     public async execute(msg: Message, data: EventData): Promise<void> {
         const factions = getallfactions();
-        msg.reply('There are [' + factions.length + '] factions in HOTA');
+        msg.reply('There are [' + factions[0].untranslatedName + '] factions in HOTA');
     }
 }
