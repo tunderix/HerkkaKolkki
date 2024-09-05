@@ -4,8 +4,12 @@
             "triggerInfo": {
                 "title": "Here are the commands for you to do:",
                 "description": ["Lets cheek it out"],
-                "fields": [
-                ]
+                "fields": []
+            },
+            "singleArtifact": {
+                "title": "This is an artifact:",
+                "description": ["BOOM"],
+                "fields": []
             },
             "welcome": {
                 "title": "Thank you for using {{COM:bot.name}}!",

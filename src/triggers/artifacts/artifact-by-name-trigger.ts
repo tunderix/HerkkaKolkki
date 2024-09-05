@@ -8,10 +8,13 @@ import messageIsMatchForTriggers, {
     indexForValueArgument,
     valueFromMsgContent
 } from "../helpers/HeroesTriggerHelpers.js";
+import { ArtifactEmbedCreator } from '../../embedCreators/ArtifactEmbedCreator.js';
 
 export class ArtifactByNameTrigger implements IHeroesArguments, Trigger {
     triggerWords = HeroesTriggers.artifactByName;
     requireGuild: false;
+
+    embedCreator: ArtifactEmbedCreator;
 
     triggered(msg: Message): boolean {
         return messageIsMatchForTriggers(msg, this.triggerWords);
@@ -22,6 +25,12 @@ export class ArtifactByNameTrigger implements IHeroesArguments, Trigger {
         const artifactName = valueFromMsgContent(msg, indexToLookFor);
         const artifact = ArtifactWithName(artifactName);
         if(artifact === undefined) return;
-        msg.reply("Artifact is : " + artifact.translatedName + ". --- " + artifact.artifact.identifier);
+        
+        this.embedCreator = new ArtifactEmbedCreator('displayEmbeds.singleArtifact', data)
+        this.embedCreator.addArtifact(artifact);
+
+        msg.reply({
+            embeds: [this.embedCreator.createEmbed()],
+        });
     }
 }
