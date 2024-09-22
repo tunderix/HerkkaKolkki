@@ -1,11 +1,11 @@
-﻿import HeroesTriggers, { uniqueFirstValues } from './heroes-trigger-templates.js';
+﻿import HeroesTriggers, { UniqueCategories } from './trigger-manifest.js';
 import IHeroesArguments from './types/IHeroesArguments';
 import { Trigger } from './trigger';
-import { Utils } from 'linguini';
 import { Message } from 'discord.js';
 import messageIsMatchForTriggers from './helpers/HeroesTriggerHelpers.js';
 import { EventData } from '../models/internal-models';
 import { TriggersEmbedCreator } from '../embedCreators/TriggersEmbedCreator.js';
+
 
 /**
  * Class representing an ArtifactInfoTrigger.
@@ -22,28 +22,9 @@ export class AllTriggersInfoTrigger implements IHeroesArguments, Trigger {
      * Words that trigger the artifact info.
      * @type {string[]}
      */
-    triggerWords = HeroesTriggers.triggers;
-    
-    embedCreator: TriggersEmbedCreator;
+    triggerWord = HeroesTriggers.triggers;
 
-    /**
-     * Constructs fields for an embed message.
-     * @returns {string} The constructed field string.
-     */
-    constructFieldsForEmbed(): string {
-        let fieldString = '';
-        // Add commands starting with "artifacts" or "artifact" as fields to embed
-        for (const value of Object.values(HeroesTriggers)) {
-            if (value[0] === 'artifacts' || value[0] === 'artifact') {
-                fieldString += '> /';
-                value.forEach(s => {
-                    fieldString += s + ' ';
-                });
-                fieldString += '\n';
-            }
-        }
-        return Utils.join(fieldString, '\n');
-    }
+    embedCreator: TriggersEmbedCreator;
 
     /**
      * Checks if the message matches the trigger words.
@@ -51,7 +32,7 @@ export class AllTriggersInfoTrigger implements IHeroesArguments, Trigger {
      * @returns {boolean} True if the message matches the trigger words, false otherwise.
      */
     triggered(msg: Message): boolean {
-        return messageIsMatchForTriggers(msg, this.triggerWords);
+        return messageIsMatchForTriggers(msg, this.triggerWord);
     }
 
     /**
@@ -61,11 +42,11 @@ export class AllTriggersInfoTrigger implements IHeroesArguments, Trigger {
      * @returns {Promise<void>} A promise that resolves when the action is complete.
      */
     public async execute(msg: Message, data: EventData): Promise<void> {
-        this.embedCreator = new TriggersEmbedCreator('displayEmbeds.triggerInfo', data)
-        
-        uniqueFirstValues.forEach(v => {
-            this.embedCreator.addTriggersWithSlash(v);
-        })
+        this.embedCreator = new TriggersEmbedCreator('displayEmbeds.triggerInfo', data);
+
+        UniqueCategories.forEach(v => {
+            this.embedCreator.addSectionFor(v);
+        });
 
         msg.reply({
             embeds: [this.embedCreator.createEmbed()],
