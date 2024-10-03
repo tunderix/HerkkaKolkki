@@ -90,8 +90,7 @@ const manifest: Record<string, ITriggerCommand> = {
     },
     factionInfo: { triggerWord: 'factions', category: 'factions', commandArray: [] },
     factionByName: {
-        triggerWord: 'faction',
-        category: 'faction',
+        triggerWord: 'faction', category: 'faction',
         commandArray: [{ argument: 'FACTION_NAME', isUserVariable: true }],
     },
 };

@@ -11,7 +11,8 @@ export class ArtifactSlotsTrigger implements IHeroesArguments, Trigger {
     triggerWord = HeroesTriggers.inventorySlots;
 
     triggered(msg: Message): boolean {
-        return messageIsMatchForTriggers(msg, this.triggerWord);
+        const temp = messageIsMatchForTriggers(msg, this.triggerWord);
+        return temp;
     }
 
     public async execute(msg: Message, data: EventData): Promise<void> {

@@ -12,6 +12,7 @@ import HeroesTriggers from '../trigger-manifest.js';
  * @param triggerCommand - The trigger command to match against.
  * @returns True if the message matches the trigger command, false otherwise.
  */
+/*
 export const messageIsMatchForTriggers = (msg: Message, triggerCommand: ITriggerCommand): boolean => {
     const msgWithoutSlash = msg.content.slice(1);
     const args = RegexUtils.splitDiscordTrigger(msgWithoutSlash);
@@ -20,6 +21,32 @@ export const messageIsMatchForTriggers = (msg: Message, triggerCommand: ITrigger
     const matchingTriggers = Object.values(HeroesTriggers).filter(trigger =>
         trigger.triggerWord === triggerCommand.triggerWord && trigger.triggerWord === args[0] && triggerCommand.commandArray.length === args.length - 1,
     );
+
+    // We know its the right command now.
+    if (matchingTriggers.length !== 0) {
+        const theTriggerLength = triggerCommand.commandArray.length;
+        const newMatches = matchingTriggers.filter(t => t.commandArray.length === theTriggerLength);
+
+        // Guard whether there are other matches with same amount of args
+        if (newMatches.length === 1) {
+            if (newMatches[0].commandArray.length < 1) return true;
+            if (newMatches[0].commandArray[0].argument === args[1]) return true;
+            return false;
+        }
+
+        //make sure trigger arguments match
+        newMatches.forEach(m => {
+            if (m.commandArray[0] === triggerCommand.commandArray[0]) {
+                const triggerWithRightCommandArg = newMatches.find(m => m.commandArray[0].argument === args[1]);
+                if (triggerCommand.commandArray[0].argument === args[1]) {
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        return false;
+    }
 
     for (let i = 0; i < matchingTriggers.length - 1; i++) {
 
@@ -32,12 +59,44 @@ export const messageIsMatchForTriggers = (msg: Message, triggerCommand: ITrigger
 
     });
 
-    if (matchingTriggers.length !== 0) {
-        return true;
-    }
-
     return false;
 };
+*/
+
+
+/**
+ * Checks if a message matches the given trigger command.
+ *
+ * @param msg - The message to check.
+ * @param triggerCommand - The trigger command to match against.
+ * @returns True if the message matches the trigger command, false otherwise.
+ */
+export const messageIsMatchForTriggers = (msg: Message, triggerCommand: ITriggerCommand): boolean => {
+    const msgWithoutSlash = msg.content.slice(1);
+    const args = RegexUtils.splitDiscordTrigger(msgWithoutSlash);
+
+    if (args[0] !== triggerCommand.triggerWord) {
+        return false;
+    }
+
+    const commandArgs = args.slice(1);
+    if (commandArgs.length !== triggerCommand.commandArray.length) {
+        return false;
+    }
+
+    return commandArgs.every((arg, index) => {
+        const commandArg = triggerCommand.commandArray[index];
+        if (commandArg.isUserVariable) {
+            // If it's a user variable, it should not match any predefined argument
+            // TODO - HERE BE DRAGONS, NAIIVE....
+            return !triggerCommand.commandArray.some(cmdArg => !cmdArg.isUserVariable && cmdArg.argument === arg);
+        } else {
+            // Otherwise, it must match the fixed argument exactly
+            return commandArg.argument === arg;
+        }
+    });
+};
+
 
 /**
  * Extracts the value from the message content at the specified index.

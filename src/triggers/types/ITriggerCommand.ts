@@ -6,3 +6,4 @@ export default interface ITriggerCommand {
     commandArray: ITriggerArgument[];
     optionalTriggerWords?: string[];
 }
+
