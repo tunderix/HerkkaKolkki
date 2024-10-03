@@ -1,3 +1,5 @@
-﻿export default interface IHeroesArguments {
-    triggerWords: string[];
+﻿import ITriggerCommand from './ITriggerCommand.js';
+
+export default interface IHeroesArguments {
+    triggerWord: ITriggerCommand;
 }

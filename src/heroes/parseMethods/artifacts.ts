@@ -3,6 +3,7 @@ import { Logger } from '../../services/index.js';
 import { ArtifactTranslationFor } from '../translations.js';
 import IArtifact, { ITranslatedArtifact } from '../types/IArtifact.js';
 import InventorySlot from '../types/InventorySlot';
+import IArtifactStats from '../types/IArtifactStats';
 
 
 // #region Helper Functions
@@ -14,6 +15,16 @@ import InventorySlot from '../types/InventorySlot';
  * @returns The created artifact object.
  */
 const createArtifactBasedOn = (key: string, value: any): IArtifact => {
+    const hasStats = value.statBonus !== undefined;
+    let statBonus: IArtifactStats = { attack: 0, defense: 0, knowledge: 0, spellpower: 0 };
+    if(hasStats) {
+        statBonus.attack = value.statBonus['ad']?.['attack'] ?? 0;
+        statBonus.defense = value.statBonus['ad']?.['defense'] ?? 0;
+        statBonus.spellpower = value.statBonus['magic']?.['sp'] ?? 0;
+        statBonus.knowledge = value.statBonus['magic']?.['int'] ?? 0;
+    }
+    
+    
     return {
         identifier: key,
         class: value.class,
@@ -23,6 +34,7 @@ const createArtifactBasedOn = (key: string, value: any): IArtifact => {
         untranslatedName: value.untranslatedName,
         slot: value.slot,
         bmUnit: value.bmUnit,
+        statBonus: hasStats ? statBonus : undefined,
     };
 }
 

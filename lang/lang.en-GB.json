@@ -1,6 +1,16 @@
 {
     "data": {
         "displayEmbeds": {
+            "triggerInfo": {
+                "title": "Here are the commands for you to do:",
+                "description": ["Try them out ;)"],
+                "fields": []
+            },
+            "singleArtifact": {
+                "title": "This is an artifact:",
+                "description": ["BOOM"],
+                "fields": []
+            },
             "welcome": {
                 "title": "Thank you for using {{COM:bot.name}}!",
                 "description": ["{{REF:bot.description}}"],

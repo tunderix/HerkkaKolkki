@@ -1,17 +1,25 @@
 {
     "data": {
         "displayEmbeds": {
+            "triggerInfo": {
+                "title": "Here are the commands for you to do:",
+                "description": ["Try them out ;)"],
+                "fields": []
+            },
+            "singleArtifact": {
+                "title": "This is an artifact:",
+                "description": ["BOOM"],
+                "fields": []
+            },
             "welcome": {
                 "title": "Thank you for using {{COM:bot.name}}!",
                 "description": ["{{REF:bot.description}}"],
                 "fields": [
                     {
-                        "name": "Important {{REF:fields.commands}}",
-                        "value": ["{{CMD_LINK_HELP}} - {{REF:commandDescs.help}}"]
-                    },
-                    {
-                        "name": "{{REF:fields.links}}",
-                        "value": ["{{REF:links.docsEmbed}}", "{{REF:links.supportEmbed}}"]
+                        "name": "Artifacts",
+                        "value": ["> /artifacts",
+                            "> /artifacts all\n> /artifacts slot `SLOT_NAME`\n> /artifacts class `ARTIFACT_CLASS`\n> /artifact `ARTIFACT_NAME`\n> /artifact slots\n> /artifact classes"
+                        ]
                     }
                 ]
             },
