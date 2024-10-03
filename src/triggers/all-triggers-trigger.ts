@@ -1,16 +1,17 @@
-﻿import { Locale, Message } from 'discord.js';
-import { EventData } from '../../models/internal-models';
-import messageIsMatchForTriggers, { constructFieldsForEmbed } from '../helpers/HeroesTriggerHelpers.js';
-import { Trigger } from '../trigger';
-import IHeroesArguments from '../types/IHeroesArguments.js';
-import HeroesTriggers from '../trigger-manifest.js';
-import { Lang } from '../../services/index.js';
+﻿import HeroesTriggers, { UniqueCategories } from './trigger-manifest.js';
+import IHeroesArguments from './types/IHeroesArguments';
+import { Trigger } from './trigger';
+import { Message } from 'discord.js';
+import messageIsMatchForTriggers from './helpers/HeroesTriggerHelpers.js';
+import { EventData } from '../models/internal-models';
+import { TriggersEmbedCreator } from '../embedCreators/TriggersEmbedCreator.js';
+
 
 /**
  * Class representing an ArtifactInfoTrigger.
  * Implements the IHeroesArguments and Trigger interfaces.
  */
-export class ArtifactInfoTrigger implements IHeroesArguments, Trigger {
+export class AllTriggersInfoTrigger implements IHeroesArguments, Trigger {
     /**
      * Indicates whether a guild is required.
      * @type {boolean}
@@ -21,7 +22,9 @@ export class ArtifactInfoTrigger implements IHeroesArguments, Trigger {
      * Words that trigger the artifact info.
      * @type {string[]}
      */
-    triggerWord = HeroesTriggers.artifactInfo;
+    triggerWord = HeroesTriggers.triggers;
+
+    embedCreator: TriggersEmbedCreator;
 
     /**
      * Checks if the message matches the trigger words.
@@ -39,12 +42,14 @@ export class ArtifactInfoTrigger implements IHeroesArguments, Trigger {
      * @returns {Promise<void>} A promise that resolves when the action is complete.
      */
     public async execute(msg: Message, data: EventData): Promise<void> {
-        const embed = Lang.getEmbed('displayEmbeds.triggerInfo', data.langGuild, {});
+        this.embedCreator = new TriggersEmbedCreator('displayEmbeds.triggerInfo', data);
 
-        embed.addFields([{ name: 'Artifacts', value: constructFieldsForEmbed() }]);
+        UniqueCategories.forEach(v => {
+            this.embedCreator.addSectionFor(v);
+        });
 
         msg.reply({
-            embeds: [embed],
+            embeds: [this.embedCreator.createEmbed()],
         });
     }
 }

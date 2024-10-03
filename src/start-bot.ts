@@ -39,6 +39,7 @@ import {ArtifactsBySlotTrigger} from "./triggers/artifacts/artifacts-by-slot-tri
 import {ArtifactsByClassTrigger} from "./triggers/artifacts/artifacts-by-class-trigger.js";
 import {ArtifactSlotsTrigger} from "./triggers/artifacts/artifact-slots-trigger.js";
 import {ArtifactClassesTrigger} from "./triggers/artifacts/artifact-classes-trigger.js";
+import { AllTriggersInfoTrigger } from './triggers/all-triggers-trigger.js';
 
 const require = createRequire(import.meta.url);
 let Config = require('../config/config.json');
@@ -97,6 +98,7 @@ async function start(): Promise<void> {
         new ArtifactsByClassTrigger(),
         new ArtifactSlotsTrigger(),
         new ArtifactClassesTrigger(),
+        new AllTriggersInfoTrigger(),
     ];
 
     // Event handlers
