@@ -3,7 +3,13 @@ import { Options, Partials } from 'discord.js';
 import { createRequire } from 'node:module';
 
 import { Button } from './buttons/index.js';
-import { DevCommand, HelpCommand, InfoCommand, TestCommand, HeroesCommand } from './commands/chat/index.js';
+import {
+    DevCommand,
+    HelpCommand,
+    HeroesCommand,
+    InfoCommand,
+    TestCommand,
+} from './commands/chat/index.js';
 import {
     ChatCommandMetadata,
     Command,
@@ -31,15 +37,16 @@ import {
     JobService,
     Logger,
 } from './services/index.js';
-import { Trigger } from './triggers/index.js';
-import { ArtifactsTrigger } from "./triggers/artifacts/artifacts-trigger.js";
-import { ArtifactInfoTrigger } from "./triggers/artifacts/artifact-info-trigger.js";
-import { ArtifactByNameTrigger } from "./triggers/artifacts/artifact-by-name-trigger.js";
-import {ArtifactsBySlotTrigger} from "./triggers/artifacts/artifacts-by-slot-trigger.js";
-import {ArtifactsByClassTrigger} from "./triggers/artifacts/artifacts-by-class-trigger.js";
-import {ArtifactSlotsTrigger} from "./triggers/artifacts/artifact-slots-trigger.js";
-import {ArtifactClassesTrigger} from "./triggers/artifacts/artifact-classes-trigger.js";
 import { AllTriggersInfoTrigger } from './triggers/all-triggers-trigger.js';
+import { ArtifactByNameTrigger } from './triggers/artifacts/artifact-by-name-trigger.js';
+import { ArtifactClassesTrigger } from './triggers/artifacts/artifact-classes-trigger.js';
+import { ArtifactInfoTrigger } from './triggers/artifacts/artifact-info-trigger.js';
+import { ArtifactSlotsTrigger } from './triggers/artifacts/artifact-slots-trigger.js';
+import { ArtifactsByClassTrigger } from './triggers/artifacts/artifacts-by-class-trigger.js';
+import { ArtifactsBySlotTrigger } from './triggers/artifacts/artifacts-by-slot-trigger.js';
+import { ArtifactsTrigger } from './triggers/artifacts/artifacts-trigger.js';
+import { Trigger } from './triggers/index.js';
+import { FactionsTrigger } from './triggers/heroes/factions-trigger.js';
 
 const require = createRequire(import.meta.url);
 let Config = require('../config/config.json');
@@ -73,8 +80,8 @@ async function start(): Promise<void> {
         new ViewDateSent(),
 
         // User Context Commands
-        new ViewDateJoined(), 
-        
+        new ViewDateJoined(),
+
         // TODO: Add new commands here
         new HeroesCommand(),
     ];
@@ -99,6 +106,7 @@ async function start(): Promise<void> {
         new ArtifactSlotsTrigger(),
         new ArtifactClassesTrigger(),
         new AllTriggersInfoTrigger(),
+        new FactionsTrigger(),
     ];
 
     // Event handlers
