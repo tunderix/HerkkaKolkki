@@ -14,7 +14,26 @@
         "emitDecoratorMetadata": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+        "baseUrl": "./src",
+        "paths": {
+            "@buttons/*": ["buttons/*"],
+            "@commands/*": ["commands/*"],
+            "@constants/*": ["constants/*"],
+            "@controllers/*": ["controllers/*"],
+            "@embedCreators/*": ["embedCreators/*"],
+            "@enums/*": ["enums/*"],
+            "@events/*": ["events/*"],
+            "@extensions/*": ["extensions/*"],
+            "@heroes/*": ["heroes/*"],
+            "@jobs/*": ["jobs/*"],
+            "@middleware/*": ["middleware/*"],
+            "@models/*": ["models/*"],
+            "@reactions/*": ["reactions/*"],
+            "@services/*": ["services/*"],
+            "@triggers/*": ["triggers/*"],
+            "@utils/*": ["utils/*"]
+        }
     },
     "exclude": ["dist", "node_modules", "tests"]
 }

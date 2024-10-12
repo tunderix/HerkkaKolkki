@@ -35,7 +35,7 @@
         "pm2:delete": "pm2 delete process.json",
         "heroes": "npm run build && node --enable-source-maps --es-module-specifier-resolution=node dist/heroes/hello.js",
         "heroes:tr_artifacts": "npm run build && node --enable-source-maps --es-module-specifier-resolution=node dist/heroes/translations/hota_tr.js",
-        "pretifyDataJson":"prettier --write Data/**/*.json"
+        "pretifyDataJson": "prettier --write Data/**/*.json"
     },
     "dependencies": {
         "@discordjs/rest": "2.3.0",
@@ -70,6 +70,7 @@
         "eslint-plugin-import": "^2.29.1",
         "eslint-plugin-unicorn": "^54.0.0",
         "prettier": "^3.3.2",
+        "tsconfig-paths": "^4.2.0",
         "typescript": "^5.5.3"
     }
 }
